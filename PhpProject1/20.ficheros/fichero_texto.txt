@@ -1,0 +1,2 @@
+hola, soy un archivo de texto :)
+soy una segunda lineasoy un texto desde phpsoy un texto desde phpsoy un texto desde phpsoy un texto desde php
