@@ -2,14 +2,20 @@
 function mostrarError($errores,$campo){
 	$alert='';
 if (isset($errores[$campo])&& !empty($campo)) {
-	$alert="<div class='alert alert-error'> ".$errores[$campo]."</div>";
+	$alert="<div class='alerta alerta-error'> ".$errores[$campo]."</div>";
 }
 return $alert;
 }
 
 function errorDelete(){
-	$_SESSION['errores']=null;
-	$borrado=session_unset();
+	$borrado=false;
+	if (isset($_SESSION['errores'])) {
+		$_SESSION['errores']=null;
+		$borrado=session_unset();
+	}
+	if (isset($_SESSION['completado'])) {
+		$_SESSION['completado']=null;
+	}
 	return $borrado;
 }
 

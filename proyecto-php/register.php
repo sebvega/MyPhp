@@ -1,12 +1,11 @@
 <?php 
-
-session_start();
+require_once 'includes/conexion.php';
 
 if (isset($_POST['submit'])) {
-	$nombre =isset($_POST['nombre']) ? $_POST['nombre'] : false;
-	$apellido=isset($_POST['apellido']) ? $_POST['apellido'] : false;
-	$email=isset($_POST['email']) ? $_POST['email'] : false;
-	$password=isset($_POST['psw']) ? $_POST['psw']: false;
+	$nombre =isset($_POST['nombre']) ? mysqli_real_escape_string($conexion,$_POST['nombre']): false;
+	$apellido=isset($_POST['apellido']) ? mysqli_real_escape_string($conexion,$_POST['apellido']) : false;
+	$email=isset($_POST['email']) ? mysqli_real_escape_string($conexion,$_POST['email']) : false;
+	$password=isset($_POST['psw']) ? mysqli_real_escape_string($conexion,$_POST['psw']): false;
 
 //array de errores
 
@@ -14,7 +13,6 @@ if (isset($_POST['submit'])) {
 
 	//validar los datos
 	if (!empty($nombre) && !is_numeric($nombre) && !preg_match("[0-9]", $nombre)) {
-		echo "el nombre es valido";
 		$nombre_validate=true;
 	}else{
 		$nombre_validate=false;
@@ -22,7 +20,6 @@ if (isset($_POST['submit'])) {
 	}
 
 	if (!empty($apellido) && !is_numeric($apellido) && !preg_match("[0-9]", $apellido)) {
-		echo "el apellido es valido";
 		$apellido_validate=true;
 	}else{
 		$apellido_validate=false;
@@ -30,7 +27,6 @@ if (isset($_POST['submit'])) {
 	}
 
 	if (!empty($email) && filter_var($email,FILTER_VALIDATE_EMAIL)) {
-		echo "el email es valido";
 		$email_validate=true;
 	}else{
 		$email_validate=false;
@@ -38,7 +34,6 @@ if (isset($_POST['submit'])) {
 	}
 
 	if (!empty($password)) {
-		echo "contraseña validada";
 		$password_validate=true;
 	}else{
 		$errores['password']= "la contraseña esta vacia";
@@ -46,13 +41,26 @@ if (isset($_POST['submit'])) {
 	$guardar_usuario=false;
 	if (count($errores)==0) {
 		$guardar_usuario=true;
+		//cifrar la contraseña importane
+		$password_segura= password_hash($password, PASSWORD_DEFAULT,['cost'=>4]);//cifro la contraseña 4veces
+
+
 		//insertar usuario en la base de datos
+		$sql="INSERT INTO usuarios VALUES(null,'$nombre','$apellido','$email','$password_segura',CURDATE())";
+
+		$guardar=mysqli_query($conexion, $sql);
+		if ($guardar) {
+			$_SESSION['completado']="el registro se ha completado con exito";
+		}else{
+			$_SESSION['errores']['general']="fallo al guardar el usuario";
+		}
+
 
 	}else{
 		$_SESSION['errores']=$errores;
-		header('Location: index.php');
 	}
 }
+header('Location: index.php');
 
 
 
