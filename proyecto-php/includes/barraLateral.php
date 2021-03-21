@@ -1,8 +1,27 @@
 <?php require_once 'includes/helpers.php'; ?>
 
 <aside id="sidebar">
-	<div id="login" class="bloque">
+	<?php if (isset($_SESSION['usuario'])) : ?>
+		<div id="userlogin" class="bloque">
+			<h3><?= "Bienvenido, ". $_SESSION['usuario']['nombre']. ' ' . $_SESSION['usuario']['apellidos']; ?> </h3>
+
+			<!-- botones -->
+			<a href="./sessionclosed.php" class="boton">cerrar sesión</a>
+			<a href="./sessionclosed.php" class="boton boton-naranja">Crear entradas</a>
+			<a href="./sessionclosed.php" class="boton boton-verde">Crear categoria</a>
+			<a href="./sessionclosed.php" class="boton boton-rojo">Mis datos</a>
+
+		</div>
+	<?php endif;?>
+		<div id="login" class="bloque">		
 		<h3>Identificate</h3>
+
+	<?php if (isset($_SESSION['error_login'])) : ?>
+		<div id="userlogin" class="alerta alerta-error">
+			<h3><?= $_SESSION['error_login']; ?> </h3>
+		</div>
+	<?php endif;?>
+
 		<form action="login.php" method="POST">
 
 			<label for="email">Email</label>

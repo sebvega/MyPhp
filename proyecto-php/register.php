@@ -4,8 +4,8 @@ require_once 'includes/conexion.php';
 if (isset($_POST['submit'])) {
 	$nombre =isset($_POST['nombre']) ? mysqli_real_escape_string($conexion,$_POST['nombre']): false;
 	$apellido=isset($_POST['apellido']) ? mysqli_real_escape_string($conexion,$_POST['apellido']) : false;
-	$email=isset($_POST['email']) ? mysqli_real_escape_string($conexion,$_POST['email']) : false;
-	$password=isset($_POST['psw']) ? mysqli_real_escape_string($conexion,$_POST['psw']): false;
+	$email=isset($_POST['email']) ? mysqli_real_escape_string($conexion,trim($_POST['email'])) : false;
+	$password=isset($_POST['psw']) ? mysqli_real_escape_string($conexion,trim($_POST['psw'])): false;
 
 //array de errores
 
