@@ -15,6 +15,11 @@ function errorDelete(){
 	}
 	if (isset($_SESSION['completado'])) {
 		$_SESSION['completado']=null;
+		unset($_SESSION['completado']);
+	}
+	if (isset($_SESSION['errores-entrada'])) {
+		$_SESSION['errores-entrada']=null;
+		unset($_SESSION['errores-entrada']);
 	}
 }
 

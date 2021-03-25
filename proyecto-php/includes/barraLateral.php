@@ -5,8 +5,8 @@
 			<h3><?= "Bienvenido, ". $_SESSION['usuario']['nombre']. ' ' . $_SESSION['usuario']['apellidos']; ?> </h3>
 			<!-- botones -->
 			<a href="./sessionclosed.php" class="boton">cerrar sesión</a>
-			<a href="./crear-categoria.php" class="boton boton-naranja">Crear entradas</a>
-			<a href="./sessionllclosed.php" class="boton boton-verde">Crear categoria</a>
+			<a href="./crear-entradas.php" class="boton boton-naranja">Crear entradas</a>
+			<a href="./crear-categoria.php" class="boton boton-verde">Crear categoria</a>
 			<a href="./sessionclosed.php" class="boton boton-rojo">Mis datos</a>
 		</div>
 	<?php endif;?>

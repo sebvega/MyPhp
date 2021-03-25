@@ -4,10 +4,6 @@ if (isset($_POST)) {
 
 	$nombre=isset($_POST['nombre'])? mysqli_real_escape_string($conexion, $_POST['nombre']) : false;
 
-//array de errores
-
-	$errores=array();
-
 //validar los datos
 	if (!empty($nombre) && !is_numeric($nombre) && !preg_match("[0-9]", $nombre)) {
 		$nombre_validate=true;
