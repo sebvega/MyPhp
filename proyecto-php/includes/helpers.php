@@ -19,6 +19,16 @@ function errorDelete(){
 }
 
 
+function conseguircategorias($conexion){
+	$qsql= "SELECT * FROM categorias ORDER BY id ASC";
+	$result=array();
+	$categorias=mysqli_query($conexion,$qsql);
+	if ($categorias && mysqli_num_rows($categorias)>=1) {
+		$result=$categorias;
+	}
+	return $result;
+}
+
 
  ?>
 
