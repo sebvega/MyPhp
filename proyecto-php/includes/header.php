@@ -33,6 +33,7 @@
 		</li>
 		<?php 
 			$categorias=conseguircategorias($conexion);
+			if (!empty($categorias)):
 			while ($categoria=mysqli_fetch_assoc($categorias)): ?>
 		
 		<li>
@@ -40,7 +41,10 @@
 		</li>
 
 
-		<?php endwhile; ?>
+		<?php 
+		endwhile;
+		endif;
+		?>
 		<li>
 			<a href="index.php">Sobre mi</a>
 		</li>

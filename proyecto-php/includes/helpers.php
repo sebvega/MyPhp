@@ -30,5 +30,17 @@ function conseguircategorias($conexion){
 }
 
 
+function conseguirultent($conexion){
+	$qsql="SELECT e.*, c.* FROM entradas e INNER JOIN categorias c on e.categorias_id=c.id ORDER BY e.id DESC LIMIT 4";
+	$entradas=mysqli_query($conexion,$qsql);
+	if ($entradas && mysqli_num_rows($entradas)>=1) {
+		$result=$entradas;
+	}
+	return $result;
+
+}
+
+
+
  ?>
 
