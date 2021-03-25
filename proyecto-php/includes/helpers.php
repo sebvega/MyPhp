@@ -11,16 +11,17 @@ function errorDelete(){
 	$borrado=false;
 	if (isset($_SESSION['errores'])) {
 		$_SESSION['errores']=null;
-		unset($_SESSION['errores']);
+		$borrado=true;
 	}
 	if (isset($_SESSION['completado'])) {
 		$_SESSION['completado']=null;
-		unset($_SESSION['completado']);
+		$borrado=true;
 	}
 	if (isset($_SESSION['errores-entrada'])) {
 		$_SESSION['errores-entrada']=null;
-		unset($_SESSION['errores-entrada']);
+		$borrado=true;
 	}
+	return $borrado;
 }
 
 

@@ -7,7 +7,7 @@
 			<a href="./sessionclosed.php" class="boton">cerrar sesión</a>
 			<a href="./crear-entradas.php" class="boton boton-naranja">Crear entradas</a>
 			<a href="./crear-categoria.php" class="boton boton-verde">Crear categoria</a>
-			<a href="./sessionclosed.php" class="boton boton-rojo">Mis datos</a>
+			<a href="./mis-datos.php" class="boton boton-rojo">Mis datos</a>
 		</div>
 	<?php endif;?>
 
