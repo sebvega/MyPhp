@@ -35,15 +35,46 @@ function conseguircategorias($conexion){
 	return $result;
 }
 
+function conseguircategoria($conexion,$id){
+	$qsql= "SELECT * FROM categorias WHERE id=$id ";
+	$result=array();
+	$categorias=mysqli_query($conexion,$qsql);
+	if ($categorias && mysqli_num_rows($categorias)>=1) {
+		$result=mysqli_fetch_assoc($categorias);
+	}
+	return $result;
+}
 
-function conseguirultent($conexion){
-	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c on e.categorias_id=c.id ORDER BY e.id DESC LIMIT 4";
+
+
+
+function conseguirent($conexion, $limit=null, $categoria=null){
+	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c on e.categorias_id=c.id   ";
+	if (!empty($categoria) && is_int((int)$categoria)) {
+		$qsql .= "WHERE e.categorias_id = $categoria";
+	}
+	$qsql .=" ORDER BY e.id DESC ";
+	if ($limit) {
+		$qsql .="LIMIT 4";
+	}
 	$entradas=mysqli_query($conexion,$qsql);
+	$result=array();
 	if ($entradas && mysqli_num_rows($entradas)>=1) {
+
 		$result=$entradas;
 	}
 	return $result;
 
+}
+
+function conseguirentrada($conexion,$id){
+	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c ON e.categorias_id=c.id WHERE e.id=$id";
+	$entrada=mysqli_query($conexion,$qsql);
+	$result=array();
+	if ($entrada && mysqli_num_rows($entrada)>=1) {
+		$result=mysqli_fetch_assoc($entrada);
+	}
+	return $result;
 }
 
 

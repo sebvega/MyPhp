@@ -1,14 +1,21 @@
+<?php require_once 'includes/conexion.php' ?>
+<?php require_once 'includes/helpers.php'; ?>
+<?php 
+	$categoriaact=conseguircategoria($conexion,$_GET['id']); 
+	if (!isset($categoriaact['id'])) {
+		header('Location: index.php');
+	}
+?>
 <?php require_once 'includes/header.php';?>
 <?php require_once 'includes/barraLateral.php'; ?>
-<?php require_once 'includes/helpers.php'; ?>
 
 <!-- contenido principal -->
 <div id="principal">
-	<h1>ultimas entradas</h1>
+	<h1>Entradas de <?=$categoriaact['nombre']?> </h1>
 
 	<?php 
-			$entradas=conseguirent($conexion,true);
-			if (!empty($entradas)):
+			$entradas=conseguirent($conexion,null,$_GET['id']);
+			if (!empty($entradas)&& mysqli_num_rows($entradas)>=1):
 			while ($entrada=mysqli_fetch_assoc($entradas)): ?>
 
 
@@ -25,12 +32,15 @@
 
 	<?php 
 	endwhile;
+	else:
+		?>
+
+		<div class="alerta"> no hay entradas en esta categoria</div>
+		<?php 
 	endif;
 	?>
 	
-	<div id="ver-todas">
-		<a href="entradas.php">ver todas las entradas</a>
-	</div>
+
 </div><!-- fin principal -->
 
 <?php require_once 'includes/foot.php'; ?>

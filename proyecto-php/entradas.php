@@ -4,10 +4,10 @@
 
 <!-- contenido principal -->
 <div id="principal">
-	<h1>ultimas entradas</h1>
+	<h1> </h1>
 
 	<?php 
-			$entradas=conseguirent($conexion,true);
+			$entradas=conseguirent($conexion);
 			if (!empty($entradas)):
 			while ($entrada=mysqli_fetch_assoc($entradas)): ?>
 
@@ -28,9 +28,7 @@
 	endif;
 	?>
 	
-	<div id="ver-todas">
-		<a href="entradas.php">ver todas las entradas</a>
-	</div>
+
 </div><!-- fin principal -->
 
 <?php require_once 'includes/foot.php'; ?>
