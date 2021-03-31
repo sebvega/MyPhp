@@ -46,8 +46,6 @@ function conseguircategoria($conexion,$id){
 }
 
 
-
-
 function conseguirent($conexion, $limit=null, $categoria=null){
 	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c on e.categorias_id=c.id   ";
 	if (!empty($categoria) && is_int((int)$categoria)) {
@@ -67,8 +65,9 @@ function conseguirent($conexion, $limit=null, $categoria=null){
 
 }
 
+
 function conseguirentrada($conexion,$id){
-	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c ON e.categorias_id=c.id WHERE e.id=$id";
+	$qsql="SELECT u.id AS artista ,e.*, c.nombre AS 'categoria' , CONCAT(u.nombre,' ',u.apellidos) AS creador 	FROM entradas e INNER JOIN categorias c ON e.categorias_id=c.id INNER JOIN usuarios u ON e.usuarios_id=u.id WHERE e.id=$id";
 	$entrada=mysqli_query($conexion,$qsql);
 	$result=array();
 	if ($entrada && mysqli_num_rows($entrada)>=1) {

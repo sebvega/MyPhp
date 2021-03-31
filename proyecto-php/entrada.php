@@ -3,8 +3,9 @@
 <?php 
 	$entradaact=conseguirentrada($conexion,$_GET['id']); 
 	if (!isset($entradaact['id'])) {
-		cheader('Location: index.php');
+		header('Location: index.php');
 	}
+
 ?>
 <?php require_once 'includes/header.php';?>
 <?php require_once 'includes/barraLateral.php'; ?>
@@ -13,10 +14,17 @@
 <div id="principal">
 	<h1><?=$entradaact['titulo']?> </h1>
 <a href="categoria.php?id=$entradaact['categoria_id']  ?> "><h2><?=$entradaact['categoria']?></h2></a>
-	
-	<h4><?=$entradaact['fecha']?></h4>
+
+	<h4><?=$entradaact['fecha']?> | <?=$entradaact['creador']?></h4>
 	<p><?=$entradaact['descripcion']?></p>
 
+
+
+
+<?php if ($_SESSION['usuario']['id']=$entradaact['artista']): ?>
+	<a href="./editar-entrada.php?id=<?=$entradaact['id']?>" class="boton boton-naranja" >Editar entrada</a>
+	<a href="./borrar-entrada.php?id=<?=$entradaact['id']?>" class="boton boton-verde" >Borrar entrada</a>
+<?php endif;?>
 </div><!-- fin principal -->
 
 <?php require_once 'includes/foot.php'; ?>

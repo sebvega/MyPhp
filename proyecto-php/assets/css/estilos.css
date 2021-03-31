@@ -181,19 +181,23 @@ input[type="submit"],
 }
 
 .boton{
+	color: white;
 	width: 120px;
 	text-align: center;
 }
 .boton-verde{
+	color: white;
 	background: #2fb925;
 	border-color: green;
 }
 
 .boton-naranja{
+	color: white;
 	background: orange;
 	border-color: #ca8b17;
 }
 .boton-rojo{
+	color: white;
 	background: red;
 	border-color: black;
 }
