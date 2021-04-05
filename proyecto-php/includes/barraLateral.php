@@ -1,5 +1,20 @@
 <?php require_once 'includes/helpers.php'; ?>
 <aside id="sidebar">
+
+<div id="buscador" class="bloque">		
+		<h3>buscar</h3>
+	<?php if (isset($_SESSION['error_login'])) : ?>
+		<div id="userlogin" class="alerta alerta-error">
+			<h3><?= $_SESSION['error_login']; ?> </h3>
+		</div>
+	<?php endif;?>
+		<form action="./buscar.php" method="POST">
+			<input type="text" name="busqueda">
+			<input type="submit" value="busqueda">
+		</form>
+	</div>
+
+
 	<?php if (isset($_SESSION['usuario'])) : ?>
 		<div id="userlogin" class="bloque">
 			<h3><?= "Bienvenido, ". $_SESSION['usuario']['nombre']. ' ' . $_SESSION['usuario']['apellidos']; ?> </h3>
@@ -11,8 +26,8 @@
 		</div>
 	<?php endif;?>
 	
-<?php if (!isset($_SESSION['usuario'])):?>
-		<div id="login" class="bloque">		
+	<?php if (!isset($_SESSION['usuario'])):?>
+	<div id="login" class="bloque">		
 		<h3>Identificate</h3>
 	<?php if (isset($_SESSION['error_login'])) : ?>
 		<div id="userlogin" class="alerta alerta-error">
@@ -56,5 +71,5 @@
 		<?php errorDelete(); ?>
 	</div>
 
-<?php endif;  ?>
+	<?php endif;  ?>
 </aside>

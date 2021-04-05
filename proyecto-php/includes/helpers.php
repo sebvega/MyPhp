@@ -46,10 +46,13 @@ function conseguircategoria($conexion,$id){
 }
 
 
-function conseguirent($conexion, $limit=null, $categoria=null){
+function conseguirent($conexion, $limit=null, $categoria=null,$busqueda =null){
 	$qsql="SELECT e.*, c.nombre AS 'categoria' FROM entradas e INNER JOIN categorias c on e.categorias_id=c.id   ";
 	if (!empty($categoria) && is_int((int)$categoria)) {
-		$qsql .= "WHERE e.categorias_id = $categoria";
+		$qsql .= "WHERE e.categorias_id = $categoria ";
+	}
+	if (!empty($busqueda)) {
+		$qsql .= " WHERE e.titulo LIKE '%$busqueda%' ";
 	}
 	$qsql .=" ORDER BY e.id DESC ";
 	if ($limit) {
@@ -75,7 +78,6 @@ function conseguirentrada($conexion,$id){
 	}
 	return $result;
 }
-
 
 
  ?>
