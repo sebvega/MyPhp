@@ -26,8 +26,13 @@
 		</div>
 	<?php endif;?>
 	
+<<<<<<< HEAD
 	<?php if (!isset($_SESSION['usuario'])):?>
 	<div id="login" class="bloque">		
+=======
+<?php if (!isset($_SESSION['usuario'])):?>
+		<div id="login" class="bloque">		
+>>>>>>> 9dcfc0f53dddc2d9b6f1b5e478bd6db18ffe2428
 		<h3>Identificate</h3>
 	<?php if (isset($_SESSION['error_login'])) : ?>
 		<div id="userlogin" class="alerta alerta-error">
